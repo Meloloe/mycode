@@ -10,7 +10,7 @@ void Swap(int *a,int *b){
 	*a=*b;
 	*b=temp;
 }
-int Partition(int sequence[],int length,int start,int end){
+int Partition(int sequence[],int length,int start,int end
 	if(length<0||start<0||length<=0||end>=length)
 		cout<<"error!"<<endl;
 	exit(0);
@@ -25,7 +25,7 @@ int Partition(int sequence[],int length,int start,int end){
 		}
 	}
 	small++;
-	swap(sequence[small],sequence[end]);
+	swap(ssequence[small],sequence[end]);
 	return small;
 }
 int QuickSort(int sequence[],int length,int start,int end){
