@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory.h>
+
 typedef struct Node{
 	int data;
 	struct Node *next;
 }Node,*LinkList;
 
-LinkList CreatList(LinkList &pList){
+LinkList CreatList(LinkList pList){
 	int i;
-	pList=(LinkList)malloc(sizeof(Node));
 	Node *p,*q;
 	p=pList;
 	scanf("%d",&pList->data);//input length
@@ -21,7 +22,7 @@ LinkList CreatList(LinkList &pList){
 	return pList;
 }
 
-LinkList ReverseList(LinkList &pList){
+LinkList ReverseList(LinkList pList){
 	Node *pre,*p=pList->next,*r=p->next;
 	p->next=NULL;
 	while(r!=NULL){
@@ -33,7 +34,7 @@ LinkList ReverseList(LinkList &pList){
 	pList->next=p;
 	return pList;
 }
-void PrintList(LinkList &pList){
+void PrintList(LinkList pList){
 	Node *p=pList->next;
 	while(p!=NULL){
 		printf("%d ",p->data);
@@ -44,6 +45,7 @@ void PrintList(LinkList &pList){
 
 int main(void){
 	LinkList pList;
+	pList=(LinkList)malloc(sizeof(Node));
 	CreatList(pList);
 	PrintList(pList);
 	ReverseList(pList);
