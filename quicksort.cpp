@@ -3,7 +3,7 @@
 using namespace std;
 int RandomInRange(int start,int end){
 	srand(time(NULL));
-	return start+rand()%(end-start);
+	return start+rand()%(end-start+1);
 }
 void Swap(int *a,int *b){
 	int temp=*a;
