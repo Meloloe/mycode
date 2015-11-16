@@ -1,4 +1,4 @@
-#define MAXQSIZE 100
+#define MAXQSIZE 10
 #define QElemType int
 
 typedef struct{
@@ -8,15 +8,15 @@ typedef struct{
 }Queue;
 
 int InitQueue(Queue* Q){
-	Q->base=(QElemType* )malloc(MAXQSIZE*sizeof(QElemType));
+	Q->base=(QElemType* )malloc(MAXQSIZE*sizeof(QElemType));printf("OK\n");
 	if(!Q->base)
 		return 0;
 	Q->front=Q->rear=0;
 	return 1;
 }
 
-int QueueLength(Queue Q){
-	return (Q.rear-Q.front+MAXQSIZE)%MAXQSIZE;
+int QueueLength(Queue* Q){
+	return (Q->rear-Q->front+MAXQSIZE)%MAXQSIZE;
 }
 
 int EnQueue(Queue* Q, QElemType e){

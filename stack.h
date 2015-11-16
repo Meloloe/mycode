@@ -17,6 +17,10 @@ int InitStack(Stack* S){
 	return 1;
 }
 
+int StackEmpty(Stack* S){
+	return S->base==S->top;
+}
+
 int GetTop(Stack* S, SElemType* e){
 	if(S->top==S->base)
 		return 0;
