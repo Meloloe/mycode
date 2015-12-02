@@ -15,7 +15,7 @@ void Print(int Path[], int d){
 	printf("\n");
 }
 
-void Path_Print(Graph* G, int v, int t, int Path[], int d){
+void Path_Print(Graph *G, int v, int t, int Path[], int d){
 	int w;
 	visited[v]=1;
 	Path[d]=v;
@@ -33,12 +33,9 @@ void Path_Print(Graph* G, int v, int t, int Path[], int d){
 
 int main(){
 	int v;
-	Graph* G=(Graph* )malloc(sizeof(Graph));
+	Graph *G=(Graph *)malloc(sizeof(Graph));
 	int Path[100]={0};
-	G->vexnum=7;
-	G->arcnum=8;
-	for(v=0;v<G->vexnum;v++)
-		G->AdjList[v].firstarc=NULL;
+	InitGraph(G, 7, 8);
 	InsertArc(G, 0, 1);
 	InsertArc(G, 0, 2);
 	InsertArc(G, 1, 3);

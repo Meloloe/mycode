@@ -5,7 +5,7 @@
 /*
 	判断一个无向图是否为一棵树(根据边数与顶点数的关系)
 */
-void DFS_Judge(Graph* G, int v, int* v_count, int* a_count){
+void DFS_Judge(Graph *G, int v, int *v_count, int *a_count){
 	int w;
 	visited[v]=1;
 	(*v_count)++;
@@ -19,11 +19,8 @@ void DFS_Judge(Graph* G, int v, int* v_count, int* a_count){
 
 int main(){
 	int v, v_count=0, a_count=0;
-	Graph* G=(Graph* )malloc(sizeof(Graph));
-	G->vexnum=10;
-	G->arcnum=12;
-	for(v=0;v<G->vexnum;v++)
-		G->AdjList[v].firstarc=NULL;
+	Graph *G=(Graph *)malloc(sizeof(Graph));
+	InitGraph(G, 10, 12);
 	InsertArc(G, 0, 1);
 	InsertArc(G, 0, 2);
 	InsertArc(G, 1, 3);

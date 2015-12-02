@@ -5,9 +5,9 @@
 #include"stack.h"
 #include"AdjList.h"
 
-void BFS(Graph* G, int v){
+void BFS(Graph *G, int v){
 	int i;
-	Queue* Q=(Queue* )malloc(sizeof(Queue));
+	Queue *Q=(Queue *)malloc(sizeof(Queue));
 	InitQueue(Q);
 	EnQueue(Q, v);
 	visited[v]=1;
@@ -22,7 +22,7 @@ void BFS(Graph* G, int v){
 	}
 }
 
-void DFS(Graph* G, int v){
+void DFS(Graph *G, int v){
 	int i;
 	visited[v]=1;
 	printf("%d ",v);
@@ -31,9 +31,9 @@ void DFS(Graph* G, int v){
 			DFS(G, i);
 }
 
-void DFS_Non_Recursive(Graph* G, int v){
+void DFS_Non_Recursive(Graph *G, int v){
 		int i;
-	Stack* S=(Stack* )malloc(sizeof(Stack));
+	Stack *S=(Stack *)malloc(sizeof(Stack));
 	InitStack(S);
 	Push(S, v);
 	visited[v]=1;
@@ -50,11 +50,8 @@ void DFS_Non_Recursive(Graph* G, int v){
 
 int main(){
 	int v;
-	Graph* G=(Graph* )malloc(sizeof(Graph));
-	G->vexnum=4;
-	G->arcnum=4;
-	for(v=0;v<G->vexnum;v++)
-		G->AdjList[v].firstarc=NULL;
+	Graph *G=(Graph *)malloc(sizeof(Graph));
+	InitGraph(G, 4, 4);
 	InsertArc(G, 0, 1);
 	InsertArc(G, 0, 2);
 	InsertArc(G, 1, 3);

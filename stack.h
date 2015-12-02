@@ -43,6 +43,6 @@ int Push(Stack *S, SElemType e){
 int Pop(Stack *S, SElemType *e){
 	if(S->top==S->base)
 		return 0;
-	*e=* --S->top;
+	*e=*--S->top;
 	return 1;
 }

@@ -3,12 +3,12 @@
 
 typedef struct ArcNode{
 	int adjvex;
-	struct ArcNode* nextarc;
+	struct ArcNode *nextarc;
 }ArcNode;
 
 typedef struct {
 	VertexType data;
-	ArcNode* firstarc;
+	ArcNode *firstarc;
 }VNode;
 
 typedef struct Graph {
@@ -22,16 +22,24 @@ void InsertVex(Graph G, int v){
 	
 }
 */
-void InsertArc(Graph* G, int v, int w){
-	ArcNode* p=G->AdjList[v].firstarc;
+void InitGraph(Graph *G, int i, int j){
+	int v;
+	G->vexnum=i;
+	G->arcnum=j;
+	for(v=0;v<G->vexnum;v++)
+		G->AdjList[v].firstarc=NULL;
+}
+
+void InsertArc(Graph *G, int v, int w){
+	ArcNode *p=G->AdjList[v].firstarc;
 	if(p==NULL){
-		G->AdjList[v].firstarc=(ArcNode* )malloc(sizeof(ArcNode));
+		G->AdjList[v].firstarc=(ArcNode *)malloc(sizeof(ArcNode));
 		p=G->AdjList[v].firstarc;
 	}
 	else{
 		while(p->nextarc!=NULL)
 			p=p->nextarc;
-		p->nextarc=(ArcNode* )malloc(sizeof(ArcNode));
+		p->nextarc=(ArcNode *)malloc(sizeof(ArcNode));
 		p=p->nextarc;
 	}
 	
@@ -39,14 +47,14 @@ void InsertArc(Graph* G, int v, int w){
 	p->nextarc=NULL;
 }
 
-int FirstAdjVex(Graph* G, int v){
+int FirstAdjVex(Graph *G, int v){
 	if(G->AdjList[v].firstarc==NULL)
 		return -1;
 	return G->AdjList[v].firstarc->adjvex;
 }
 
-int NextAdjVex(Graph* G, int v, int w){
-	ArcNode* p=G->AdjList[v].firstarc;
+int NextAdjVex(Graph *G, int v, int w){
+	ArcNode *p=G->AdjList[v].firstarc;
 	while(p->adjvex!=w&&p->nextarc!=NULL)
 		p=p->nextarc;
 	if(p->nextarc==NULL)
