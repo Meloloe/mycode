@@ -2,24 +2,24 @@
 #define QElemType int
 
 typedef struct{
-	QElemType* base;
+	QElemType *base;
 	int front;
 	int rear;
 }Queue;
 
-int InitQueue(Queue* Q){
-	Q->base=(QElemType* )malloc(MAXQSIZE*sizeof(QElemType));
+int InitQueue(Queue *Q){
+	Q->base=(QElemType *)malloc(MAXQSIZE*sizeof(QElemType));
 	if(!Q->base)
 		return 0;
 	Q->front=Q->rear=0;
 	return 1;
 }
 
-int QueueLength(Queue* Q){
+int QueueLength(Queue *Q){
 	return (Q->rear-Q->front+MAXQSIZE)%MAXQSIZE;
 }
 
-int EnQueue(Queue* Q, QElemType e){
+int EnQueue(Queue *Q, QElemType e){
 	if((Q->rear+1)%MAXQSIZE==Q->front)
 		return 0;
 	Q->base[Q->rear]=e;
@@ -27,7 +27,7 @@ int EnQueue(Queue* Q, QElemType e){
 	return 1;
 }
 
-int DeQueue(Queue* Q, QElemType* e){
+int DeQueue(Queue *Q, QElemType *e){
 	if(Q->rear==Q->front)
 		return 0;
 	*e=Q->base[Q->front];

@@ -3,13 +3,13 @@
 #define SElemType int
 
 typedef struct{
-	SElemType* base;
-	SElemType* top;
+	SElemType *base;
+	SElemType *top;
 	int stacksize;
 }Stack;
 
-int InitStack(Stack* S){
-	S->base=(SElemType* )malloc(STACK_INIT_SIZE*sizeof(SElemType));
+int InitStack(Stack *S){
+	S->base=(SElemType *)malloc(STACK_INIT_SIZE*sizeof(SElemType));
 	if(!S->base)
 		return 0;
 	S->top=S->base;
@@ -17,20 +17,20 @@ int InitStack(Stack* S){
 	return 1;
 }
 
-int StackEmpty(Stack* S){
+int StackEmpty(Stack *S){
 	return S->base==S->top;
 }
 
-int GetTop(Stack* S, SElemType* e){
+int GetTop(Stack *S, SElemType *e){
 	if(S->top==S->base)
 		return 0;
 	*e=*(S->top-1);
 	return 1;
 }
 
-int Push(Stack* S, SElemType e){
+int Push(Stack *S, SElemType e){
 	if(S->top-S->base>=S->stacksize){
-		S->base=(SElemType* )realloc(S->base, (S->stacksize+STACKINCREMENT)*sizeof(SElemType));
+		S->base=(SElemType *)realloc(S->base, (S->stacksize+STACKINCREMENT)*sizeof(SElemType));
 	if(!S->base)
 		return 0;
 	S->top=S->base+S->stacksize;
@@ -40,7 +40,7 @@ int Push(Stack* S, SElemType e){
 	return 1;
 }
 
-int Pop(Stack* S, SElemType* e){
+int Pop(Stack *S, SElemType *e){
 	if(S->top==S->base)
 		return 0;
 	*e=* --S->top;

@@ -6,15 +6,15 @@
 #include"AdjList.h"
 
 void BFS(Graph* G, int v){
-	int i, w=v;
+	int i;
 	Queue* Q=(Queue* )malloc(sizeof(Queue));
 	InitQueue(Q);
-	EnQueue(Q, w);
-	visited[w]=1;
+	EnQueue(Q, v);
+	visited[v]=1;
 	while(QueueLength(Q)!=0){
-		DeQueue(Q, &w);
-		printf("%d ",w);
-		for(i=FirstAdjVex(G, w);i>=0;i=NextAdjVex(G, w, i))
+		DeQueue(Q, &v);
+		printf("%d ",v);
+		for(i=FirstAdjVex(G, v);i>=0;i=NextAdjVex(G, v, i))
 			if(!visited[i]){
 				EnQueue(Q, i);
 				visited[i]=1;
@@ -23,24 +23,24 @@ void BFS(Graph* G, int v){
 }
 
 void DFS(Graph* G, int v){
-	int w;
+	int i;
 	visited[v]=1;
 	printf("%d ",v);
-	for(w=FirstAdjVex(G, v);w>=0;w=NextAdjVex(G, v, w))
-		if(!visited[w])
-			DFS(G, w);
+	for(i=FirstAdjVex(G, v);i>=0;i=NextAdjVex(G, v, i))
+		if(!visited[i])
+			DFS(G, i);
 }
 
 void DFS_Non_Recursive(Graph* G, int v){
-		int i, w=v;
+		int i;
 	Stack* S=(Stack* )malloc(sizeof(Stack));
 	InitStack(S);
-	Push(S, w);
-	visited[w]=1;
+	Push(S, v);
+	visited[v]=1;
 	while(!StackEmpty(S)){
-		Pop(S, &w);
-		printf("%d ",w);
-		for(i=FirstAdjVex(G, w);i>=0;i=NextAdjVex(G, w, i))
+		Pop(S, &v);
+		printf("%d ",v);
+		for(i=FirstAdjVex(G, v);i>=0;i=NextAdjVex(G, v, i))
 			if(!visited[i]){
 				Push(S, i);
 				visited[i]=1;

@@ -19,7 +19,7 @@ BiTree CreatTree(){
 	}
 	else{
 		node=(BiNode *)malloc(sizeof(BiNode));
-		
+		node->data=0;
 		node->lchild=CreatTree();
 		node->rchild=CreatTree();
 	}

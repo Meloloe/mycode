@@ -4,11 +4,10 @@
 #include"queue.h"
 #include"stack.h"
 #include"AdjList.h"
-
-int Path[100]={0};
-int flag=0;
-
-void Print(int d){
+/*
+	基于深度优先遍历，打印图中两点之间的路径
+*/
+void Print(int Path[], int d){
 	int i;
 	for(i=0;i<=d;++i){
 		printf("%d ",Path[i]);
@@ -16,40 +15,41 @@ void Print(int d){
 	printf("\n");
 }
 
-void Path_Print(Graph* G, int v, int t, int d){
+void Path_Print(Graph* G, int v, int t, int Path[], int d){
 	int w;
 	visited[v]=1;
-//	printf("%d ",v);
 	Path[d]=v;
 	if(v==t){
-		Print(d);
-		flag=1;
-		return;
+		Print(Path, d);
+		exit(0);
 	}
 	for(w=FirstAdjVex(G, v);w>=0;w=NextAdjVex(G, v, w)){
 		if(!visited[w])
-			Path_Print(G, w, t, ++d);
-		if(flag==1)
-			return;
-		visited[w]=0;
+			Path_Print(G, w, t, Path, ++d);
+	//	visited[w]=0;	//取消访问标记，使该顶点可重新使用（此语句置于for循环外亦可）
 	}
+	visited[w]=0;
 }
 
 int main(){
 	int v;
 	Graph* G=(Graph* )malloc(sizeof(Graph));
-	memset(Path, 0, 100*sizeof(int));
-	G->vexnum=4;
-	G->arcnum=4;
+	int Path[100]={0};
+	G->vexnum=7;
+	G->arcnum=8;
 	for(v=0;v<G->vexnum;v++)
 		G->AdjList[v].firstarc=NULL;
 	InsertArc(G, 0, 1);
 	InsertArc(G, 0, 2);
 	InsertArc(G, 1, 3);
 	InsertArc(G, 2, 3);
+	InsertArc(G, 3, 4);
+	InsertArc(G, 3, 5);
+	InsertArc(G, 4, 6);
+	InsertArc(G, 5, 6);
 	for(v=0;v<G->vexnum;v++)
 		visited[v]=0;
-	Path_Print(G, 0, 3, 0);
+	Path_Print(G, 0, 6, Path, 0);
 	printf("\n");
 	return 0;
 }
