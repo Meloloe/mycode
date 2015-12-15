@@ -7,22 +7,18 @@ typedef struct Node{
 	struct Node *next;
 }Node,*LinkList;
 
-LinkList CreatList(LinkList pList){
+void CreatList(LinkList L){
 	int i;
-	Node *p,*q;
-	p=pList;
-	scanf("%d",&pList->data);//input length
-	for(i=0;i<pList->data;i++){
-		q=(Node *)malloc(sizeof(Node));
-		scanf("%d",&(q->data));
-		p->next=q;
-		p=q;
+	LinkList T=L;
+	for(i=0;i<10;i++){
+		T->next=(Node *)malloc(sizeof(Node));
+		T=T->next;
+		scanf("%d",&(T->data));
 	}
-	p->next=NULL;
-	return pList;
+	T->next=NULL;
 }
 
-int DeleteRepeatedNum(LinkList L){
+void DeleteRepeatedNum(LinkList L){
 	int mark[100]={0},temp;
 	LinkList p=L->next;
 	LinkList pre=L;
@@ -34,16 +30,9 @@ int DeleteRepeatedNum(LinkList L){
 		else
 			temp=p->data;
 		if(mark[temp]==1){
-			if(p->next!=NULL){
 				pre->next=p->next;
 				free(p);
 				p=pre->next;
-			}
-			else{
-				pre->next=NULL;
-				free(p);
-				p=pre->next;
-			}
 		}
 		else{
 			mark[temp]=1;
@@ -51,7 +40,6 @@ int DeleteRepeatedNum(LinkList L){
 			pre=pre->next;
 		}
 	}
-	return 1;
 }
 
 void PrintList(LinkList pList){
@@ -63,7 +51,7 @@ void PrintList(LinkList pList){
 	printf("\n");
 }
 
-int main(void){
+int main(){
 	LinkList pList;
 	pList=(LinkList)malloc(sizeof(Node));
 	CreatList(pList);
