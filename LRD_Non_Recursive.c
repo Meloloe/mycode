@@ -6,8 +6,7 @@ void visit(BiNode *T){
 	printf("%d ",T->data);
 }
 void LRD_Non_Recursive(BiTree T){
-	BiNode *p=T;
-	BiTree r=NULL;
+	BiNode *p=T, *r=NULL;
 	Stack *S=(Stack *)malloc(sizeof(Stack));
 	InitStack(S);
 	while(p||!StackEmpty(S)){
